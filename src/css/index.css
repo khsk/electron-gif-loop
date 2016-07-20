@@ -1,0 +1,7 @@
+
+img {
+	margin-left: calc(var(--html-margin) * -1);
+	margin-top: calc(var(--html-margin) * -1);
+	height: calc(100% + (var(--html-margin) * 2));
+	width:  calc(100% + (var(--html-margin) * 2));
+}

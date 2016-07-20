@@ -1,0 +1,20 @@
+{
+  "name"           : "electron-gif-loop",
+  "version"        : "1.0.0",
+  "description"    : "gify gif viewer",
+  "author"         : "khsk",
+  "main"           : "main.js",
+  "dependencies"   : {},
+  "devDependencies": {
+    "electron-packager": "^5.2.1",
+    "electron-prebuilt": "1.2.6"
+  },
+  "scripts"        : {
+    "start"          : "./node_modules/.bin/electron ./",
+    "release-win-64" : "./node_modules/.bin/electron-packager ./ electron-gif-loop --version=1.2.6 --platform=win32 --arch=x64 --overwrite --asar --out=./"
+  },
+  "repository"     : {
+    "type" : "git",
+    "url"  : "https://github.com/khsk/electron-gif-loop.git"
+  }
+}

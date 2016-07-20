@@ -1,0 +1,8 @@
+
+input, label, button {
+	-webkit-app-region: no-drag;
+}
+
+label {
+	-webkit-user-select: none
+}
