@@ -10,8 +10,8 @@
 	var watchRequest
 
 	var initSetting = function() {
-		var settings = JSON.parse(localStorage.getItem('settings'));
-		tags = 'tag' in settings? settings.tag : 'random';
+		var settings = JSON.parse(localStorage.getItem('settings')) || {};
+		tags = 'tag' in settings ? settings.tag : 'random';
 		loopCount = 'loop_count' in settings ? settings.loop_count : 1;
 	}
 

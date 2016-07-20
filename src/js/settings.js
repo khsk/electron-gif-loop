@@ -20,11 +20,10 @@ document.getElementById('back').addEventListener('click', function() {
 
 (function() {
 	if (!localStorage.getItem('settings')) {
-		alert(localStorage.getItem('settings'));
 		return;
 	}
 	var settings = JSON.parse(localStorage.getItem('settings'));
-	document.getElementById('tag'       ).value = 'tag' in settings? settings.tag.join(', ') : 'random';
+	document.getElementById('tag'       ).value = 'tag' in settings ? settings.tag.join(', ') : 'random';
 	document.getElementById('loop_count').value = 'loop_count' in settings ? settings.loop_count : 1;
 
 })()
