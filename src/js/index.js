@@ -100,7 +100,6 @@
 	var duration = '';
 	// randomUrlを移して空にして、imgタグの作成フラグとして扱う
 	var showUrl = '';
-	var src = '';
 	// アニメーション時間もバッファする
 	function fetchGifDuration() {
 		if(!randomUrl || (duration != '')) {
@@ -118,13 +117,7 @@
 			var info = gify.getInfo(xhr.responseText)
 			duration = info.durationChrome || info.duration || 0
 
-			// バイナリのimgタグで表示出来るように加工(src=urlでの再読み込みを防止したい)
-			var bytes = '';
-			for (var i = 0; i < xhr.responseText.length; i++){
-				bytes += String.fromCharCode(xhr.responseText.charCodeAt(i) & 0xff);
 			}
-			var base64 = btoa(bytes);
-			src = 'data:image/gif;base64,' + base64;
 		});
 		xhr.open("GET", showUrl);
 		xhr.send();
@@ -142,7 +135,7 @@
 			return;
 		}
 
-		image.src = src;
+		image.src = showUrl;
 
 		setTimeout(showGif, duration * loopCount)
 		// 現在のdurationは記憶しておく
