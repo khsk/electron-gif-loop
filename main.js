@@ -54,6 +54,7 @@ Electron.app.on('ready', function() {
 	mainWindow.loadURL('file://' + __dirname + '/index.html')
 
 	mainWindow.on('closed', function() {
+		Electron.session.defaultSession.clearCache(() => {})
 		mainWindow = null
 	})
 
