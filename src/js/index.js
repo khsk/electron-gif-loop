@@ -100,6 +100,8 @@
 	var duration = '';
 	// randomUrlを移して空にして、imgタグの作成フラグとして扱う
 	var showUrl = '';
+	var reacheUpperLimitStorage = false;
+	var cashDuration = 0;
 	// アニメーション時間もバッファする
 	function fetchGifDuration() {
 		if(!randomUrl || (duration != '')) {
@@ -111,12 +113,27 @@
 		// 先読み開始可能に
 		randomUrl = ''
 
+		if (!reacheUpperLimitStorage && (cashDuration = sessionStorage.getItem(showUrl))) {
+			duration = cashDuration
+			return
+		}
+
+
 		var xhr = new XMLHttpRequest();
 		xhr.overrideMimeType('text/plain; charset=x-user-defined');
 		xhr.addEventListener("loadend", function(e){
 			var info = gify.getInfo(xhr.responseText)
 			duration = info.durationChrome || info.duration || 0
 
+			if (!reacheUpperLimitStorage) {
+				try {
+					//console.log('cache!')
+					sessionStorage.setItem(showUrl, duration);
+				} catch(e) {
+					console.log('sessionStorage reach!!')
+					console.log(e)
+					reacheUpperLimitStorage = true;
+				}
 			}
 		});
 		xhr.open("GET", showUrl);
@@ -145,7 +162,7 @@
 		showUrl  = '';
 	}
 	// 初期実行 初回表示は最低3秒後
-	setTimeout(showGif, 3000);
+	setTimeout(showGif, 2000);
 
 
 	console.timeEnd('index')
